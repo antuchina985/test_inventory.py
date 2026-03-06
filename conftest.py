@@ -11,14 +11,13 @@ target.mkdir(parents=True, exist_ok=True) # Asegura que la carpeta exista antes 
 
 @pytest.fixture
 def driver():
-    """Configura y cierra el WebDriver."""
-    # Considera usar ChromeOptions para modo headless en CI/CD
+    
     options=Options()
     options.add_argument("--incognito")
-    driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(10) # Buena práctica para evitar elementos no encontrados
-    yield driver
-    driver.quit()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-gpu")
+    options.add_argument("window-size=1920,1080")
+    options.add_argument("--headless=new")  # Descomenta esta línea para ejecutar en modo headless
 
 @pytest.fixture
 def login_page(driver):

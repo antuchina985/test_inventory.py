@@ -1,13 +1,4 @@
 import pytest  
 
-test_files = [
-    "tests/test_login.py",
-    "tests/test_inventory.py",
-    "tests/test_cart.py",
-    "tests/test_cart_json.py",
-    "tests/test_api_reqres.py"
-]
+pytest.main("tests/", "--html=reportes/reporte.html", "--self-contained-html")
 
-pystest_args = test_files + ["--html=report.html", "--self-contained-html"]
-
-pytest.main(pystest_args)
